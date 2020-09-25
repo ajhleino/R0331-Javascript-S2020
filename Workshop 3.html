@@ -1,0 +1,181 @@
+<HTML>
+<style>
+body {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: #333333;
+}
+
+div {
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+}
+table, tr, td{
+  border: 1px solid gray;
+  width: 50%;
+}
+
+</style>
+<script>
+
+
+  function ekaFunktio() {
+  alert("You clicked me! "+Date());
+}
+
+function showTable(){
+  document.write(`<table border='1' cellspacing='0'>
+  <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tfoot>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>$320,800</td>
+            </tr>
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>$170,750</td>
+            </tr>
+            <tr>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td>$86,000</td>
+            </tr>
+            <tr>
+                <td>Cedric Kelly</td>
+                <td>Senior Javascript Developer</td>
+                <td>$433,060</td>
+            </tr>
+            <tr>
+                <td>Airi Satou</td>
+                <td>Accountant</td>
+                <td>$162,700</td>
+            </tr>
+            </table>
+ `);  
+}
+var persons = ["Nyssa P. Skinner", "593-4241 Lacus, St.","Cape Verde", 
+	       "Camilla F. Strickland","391-2150 Ac Rd.","Andorra",
+	       "Reagan U. Andrews", "P.O. Box 472, 2271 Mauris Ave","Faroe Islands",
+	       "Kelsey D. Clark", "P.O. Box 866, 7793 Aliquet Ave","Bulgaria"
+]
+function tokaFunktio(){
+
+        document.write("<table border='1' cellspacing='0'>");
+        for (var i = 0; i < persons.length; i+=3) {
+        document.write("<tr><td>"+persons[i]+"</td><td>"+persons[i+1]+"</td><td>"+persons[i+2]+"</td></tr>");
+}
+}
+
+function teksti()    {
+    document.getElementById("textdata").style.backgroundColor="red";
+    document.getElementById("textdata").textContent += "Please fill in the form with proper data.";
+}  
+
+var tapahtuma=0;
+function laskuri(){
+  document.getElementById("textdata").value = (tapahtuma);
+tapahtuma++;
+}
+
+
+
+function halutus() {
+  if(document.getElementById("textdata").value.trim() == '') {
+    alert("Laatikko on tyhjä");
+  } else {
+    alert("Laatikossa on tekstiä")
+  }
+
+}
+
+
+function koordinaatit(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+  var alaPalkki= "Koordinaatit: (" + x + "," + y + ")";
+  document.getElementById("palkki").innerHTML = alaPalkki;
+}
+
+function tyhjenna() {
+  document.getElementById("palkki").innerHTML = "";
+}
+
+</script>
+
+<h1>Workshop 3: JavaScript Events</h1>
+<hr />
+
+
+
+<h2>Exercise 1</h2>
+
+<p>
+  <button onclick="ekaFunktio()">Button 1</button>
+  <button onclick="showTable()">Button 2</button>
+  <button onclick="tokaFunktio()">Button 3</button>
+</p>
+
+<ul>
+  
+
+
+
+  <li>Button 3 should print out an HTML table (Name, Addrees, Country) using data from the following JavaScript array. HINT: Use looping to go through the array and print 
+the data surrounded by HTML-tags to create the table.  </li>
+<xmp>
+var persons = ["Nyssa P. Skinner", "593-4241 Lacus, St.","Cape Verde", 
+	       "Camilla F. Strickland","391-2150 Ac Rd.","Andorra",
+	       "Reagan U. Andrews", "P.O. Box 472, 2271 Mauris Ave","Faroe Islands",
+	       "Kelsey D. Clark", "P.O. Box 866, 7793 Aliquet Ave","Bulgaria"
+];
+
+
+</xmp>
+</ul>
+<h2 onmouseover="console.log('Stepped over my a mouse!')" onmouseout="alert('Bye Bye Mouse!')">Exercise 2</h2>
+
+
+
+  <h2>Exercise 3</h2>
+
+<form>
+ 
+  <textarea id="textdata"  onfocus="teksti()" onkeydown="laskuri()"></textarea><br>
+
+  <button onmousedown="halutus()">Send me</button>
+  <p id="palkki1"></p>
+</form>
+
+
+<h2>Exercise 4</h2>
+So far you have hardcoded the events into HTML tags. Make a copy of your exercise file and try to add the events dynamically, without touching the HTML at all. This can be 
+achieved using addEventListener() -function, <a target="_blank" href="https://www.w3schools.com/js/js_htmldom_eventlistener.asp"> see more here</a>.
+
+
+<h2>Exercise 5</h2>
+<div id="coordinates" onmousemove="koordinaatit(event)" onmouseout="tyhjenna()"></div>
+<p id="palkki"></p>
+
+
+<H2>Exercise 6</h2>
+<button>Get location</button> 
+<button>Show location</button> 
+
+<li>The first button should check <a href="https://www.w3schools.com/html/html5_geolocation.asp">Geolocation</a> of the user, and output it to the console and to the 
+page. Note: Some browsers might not allow you to do this. Try different browsers if you get errors.</li>
+<li>
+The second button should show your location on a Google Maps. You can see the map with a spesific location using the URL 
+"https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false" where latlon is your latitude + longitute data separated by 
+comma (,).
+</li>
+</html>
